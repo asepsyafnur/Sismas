@@ -27,6 +27,16 @@ class AddressController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'telp' => 'required',
+            'email' => 'required',
+            'alamat' => 'required'
+        ], [
+            'telp.required' => '*wajib diisi',
+            'email.required' => '*wajib diisi',
+            'alamat.required' => '*wajib diisi',
+        ]);
+
         $data = [
             'telp' => $request->telp,
             'email' => $request->email,

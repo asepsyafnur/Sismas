@@ -12,7 +12,8 @@ class AboutModel extends Model
     protected $fillable = [
         'nama',
         'sambutan_home',
-        'sambutan'
+        'sambutan',
+        'foto',
     ];
 
     public function detailData($id)

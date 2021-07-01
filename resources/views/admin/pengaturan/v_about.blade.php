@@ -28,7 +28,6 @@
                         <form action="{{ url('about/'. $about->id )}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
-                            <input type="hidden" name="foto_lama" value="{{ $about->foto }}" />
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="nama">Nama Ketua</label>
@@ -39,7 +38,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="foto">Foto Ketua</label>
-                                    <input type="file" class="form-control" name="foto" id="foto" value="{{ $about->foto }}" />
+                                    <input type="file" class="form-control" name="foto" id="foto" />
                                     @error('foto')
                                     <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
                                     @enderror
@@ -57,8 +56,8 @@
 
                                 <div class="form-group col-md-4">
                                     <label for="desc">Deskripsi</label>
-                                    <textarea name="deskripsi" id="desc" cols="30" rows="10" class="form-control">{{$about->sambutan_home}}</textarea>
-                                    @error('deskripsi')
+                                    <textarea name="sambutan_home" id="desc" cols="30" rows="10" class="form-control">{{$about->sambutan_home}}</textarea>
+                                    @error('sambutan_home')
                                     <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
                                     @enderror
                                 </div>

@@ -35,21 +35,21 @@ class ProfileController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => $ruleEmail,
-            'image' => 'file|mimes:jpg,png,jpeg|size:1024'
+            'image' => 'mimes:jpg,png,jpeg|max:1024'
         ], [
             'name.required' => 'nama tidak boleh kosong',
             'email.required' => 'email tidak boleh kosong',
             'email.unique' => 'email sudah terdaftar',
             'image.mimes' => 'gambar harus berekstensi jpg,jpeg,png',
-            'image.size' => 'resize gambar menjadi 250x250'
+            'image.max' => 'silahkan upload foto dibawah ukuran 1mb'
         ]);
 
         $userImage = $request->image;
         if ($userImage !== null) {
             $namaGambar = time() . '.' . $userImage->extension();
-            $userImage->move(public_path('img_users', $namaGambar));
+            $userImage->move(public_path('img_users'), $namaGambar);
             if ($user->image !== 'default.png') {
-                unlink(public_path('img_users/' . $user->image));
+                unlink(public_path('img_users/') . $user->image);
             }
             $data = [
                 'name' => $request->name,
