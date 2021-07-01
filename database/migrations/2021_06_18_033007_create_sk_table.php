@@ -19,7 +19,7 @@ class CreateSkTable extends Migration
             $table->date('tgl_terima');
             $table->string('nmr_st', 30);
             $table->date('tgl_st');
-            $table->text('isi',);
+            $table->text('isi');
             $table->string('disposisi');
             $table->string('file');
             $table->timestamps();

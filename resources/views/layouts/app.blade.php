@@ -45,6 +45,7 @@
     <script src="{{url('theme/js/subscribe.js')}}"></script>
     <!-- Script JS -->
     <script src="{{url('theme/js/script.js')}}"></script>
+    @yield('script')
 </body>
 
 </html>
