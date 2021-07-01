@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\SuratKeluarController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\AddressController;
+use App\Http\Controllers\Admin\AboutController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -77,6 +79,16 @@ Route::group(['middleware' => 'ceklevel:admin,ketua,sekretaris'], function () {
 
     Route::get('/backup-db', function(){
         return view('admin.v_backupdb');
+    });
+
+    Route::prefix('address')->group(function(){
+        Route::get('/', [AddressController::class, 'index'])->name('address');
+        Route::put('/{id}', [AddressController::class, 'update']);
+    });
+
+    Route::prefix('about')->group(function(){
+        Route::get('/', [AboutController::class, 'index'])->name('about');
+        Route::put('/{id}', [AboutController::class, 'update']);
     });
 });
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class AddressModel extends Model
 {
@@ -13,4 +14,10 @@ class AddressModel extends Model
         'email',
         'alamat'
     ];
+
+    public function updateData($id, $data)
+    {
+        return DB::table('address')->where('id', $id)->update($data);
+    }
+
 }

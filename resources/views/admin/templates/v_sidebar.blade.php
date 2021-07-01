@@ -30,23 +30,52 @@
         @if(auth()->user()->level == 'admin' || auth()->user()->level == 'humas' )
         <li class="nav-item">
           <a href="#" class="nav-link">
-            <i class="nav-icon fa fa-edit"></i>
+            <i class="nav-icon fa fa-cog"></i>
             <p>
-              Blog
+              Pengaturan
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ url('address') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Header</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ url('about') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Content</p>
+                <p>About</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-newspaper"></i>
+            <p>
+              Berita
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ url('address') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>List Berita</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ url('about') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Post Berita</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ url('about') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Kategori</p>
               </a>
             </li>
           </ul>

@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-md-8">
                 <h2>Selamat Datang</h2>
-                <p>{{$ketua->sambutan_home}}.</p>
+                <p>{{$about->sambutan_home}}.</p>
             </div>
             <div class="col-md-4">
                 <img src="{{url('theme/images/welcome.png')}}" class="img-fluid about-img" alt="#">
@@ -57,23 +57,23 @@
             </div>
         </div>
         <div class="row">
-          <?php foreach ($berita->result() as $row) :?>
+          @foreach ($berita as $row)
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div class="courses_box mb-4">
                     <div class="course-img-wrap">
-                        <img src="<?php echo base_url().'assets/images/'.$row->tulisan_gambar;?>" class="img-fluid" alt="courses-img">
+                        <img src="{{url('theme/images/'.$row->tulisan_gambar)}}" class="img-fluid" alt="courses-img">
                     </div>
                     <!-- // end .course-img-wrap -->
-                    <a href="<?php echo site_url('artikel/'.$row->tulisan_slug);?>" class="course-box-content">
-                        <h3 style="text-align:center;"><?php echo $row->tulisan_judul;?></h3>
+                    <a href="{{url('artikel/'.$row->tulisan_slug)}}" class="course-box-content">
+                        <h3 style="text-align:center;">{{ $row->tulisan_judul }}</h3>
                     </a>
                 </div>
             </div>
-          <?php endforeach;?>
+          @endforeach
         </div> <br>
         <div class="row">
             <div class="col-md-12 text-center">
-                <a href="<?php echo site_url('artikel');?>" class="btn btn-default btn-courses">View More</a>
+                <a href="{{url('artikel')}}" class="btn btn-default btn-courses">View More</a>
             </div>
         </div>
     </div>
