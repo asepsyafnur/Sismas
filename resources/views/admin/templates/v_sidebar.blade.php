@@ -61,19 +61,19 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ url('address') }}" class="nav-link">
+              <a href="{{ url('list-berita') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>List Berita</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ url('about') }}" class="nav-link">
+              <a href="{{ url('post-berita') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Post Berita</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ url('about') }}" class="nav-link">
+              <a href="{{ url('kategori') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kategori</p>
               </a>
