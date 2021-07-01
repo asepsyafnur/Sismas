@@ -58,7 +58,7 @@ class SuratKeluarController extends Controller
             'tgl_st' => 'required',
             'isi' => 'required',
             'disposisi' => 'required',
-            'file' => 'required|file|max:1024'
+            'file' => 'required|file|max:5020'
         ], [
             'id_arsip.required' => '*kode arsip tidak boleh kosong',
             'tgl_terima.required' => '*tanggal diterima tidak boleh kosong',
@@ -114,7 +114,6 @@ class SuratKeluarController extends Controller
             'tgl_st.required' => '*tanggal surat tidak boleh kosong',
             'isi.required' => '*isi surat tidak boleh kosong',
             'disposisi.required' => '*disposisi tidak boleh kosong',
-            'file.required' => '*silahkan upload surat',
             'file.max' => '*ukuran file terlalu besar',
 
         ]);

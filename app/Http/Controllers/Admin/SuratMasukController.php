@@ -59,7 +59,7 @@ class SuratMasukController extends Controller
             'tgl_st' => 'required',
             'isi' => 'required',
             'disposisi' => 'required',
-            'file' => 'required|file|max:1024'
+            'file' => 'required|file|max:5020'
         ], [
             'id_arsip.required' => '*kode arsip tidak boleh kosong',
             'tgl_terima.required' => '*tanggal diterima tidak boleh kosong',
@@ -114,7 +114,6 @@ class SuratMasukController extends Controller
             'tgl_st.required' => '*tanggal surat tidak boleh kosong',
             'isi.required' => '*isi surat tidak boleh kosong',
             'disposisi.required' => '*disposisi tidak boleh kosong',
-            'file.required' => '*silahkan upload surat',
             'file.max' => '*ukuran file terlalu besar',
             
         ]);
@@ -154,11 +153,11 @@ class SuratMasukController extends Controller
     public function delete($id)
     {
         $suratMasuk = $this->SmM->detailData($id);
-        // if($suratMasuk !== null)
-        // {
-        //     unlink(public_path('surat_masuk/'. $suratMasuk->file));
-        // }
-        // $this->SmM->deleteData($id);
+        if($suratMasuk !== null)
+        {
+            unlink(public_path('surat_masuk/'. $suratMasuk->file));
+        }
+        $this->SmM->deleteData($id);
         return redirect()->route('surat-masuk')->with('destroy', 'data berhasil dihapus');
     }
 
