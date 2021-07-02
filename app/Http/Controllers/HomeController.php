@@ -6,19 +6,18 @@ use App\Models\AddressModel;
 use Illuminate\Http\Request;
 use App\Models\SliderModel;
 use App\Models\AboutModel;
-use App\Models\TulisanModel;
+use App\Models\BeritaModel;
 
 class HomeController extends Controller
 {
 
     public function index()
     {
-        $berita = new TulisanModel();
         $data = [
             'slider' => SliderModel::get(),
             'address' => AddressModel::find(1),
             'about' => AboutModel::find(1),
-            'berita' => $berita->getData()
+            'berita' => BeritaModel::allData()
         ];
 
         return view('v_home', $data);    

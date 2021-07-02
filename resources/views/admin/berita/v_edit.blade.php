@@ -1,5 +1,5 @@
 @extends('admin/templates/v_default')
-@section('title', 'Ippmp | About')
+@section('title', 'Ippmp | update berita')
 @section('link')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{asset('assets_dashboard/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
@@ -9,11 +9,13 @@
 <link rel="stylesheet" href="{{ asset('assets_dashboard/plugins/sweetalert2/sweetalert2.min.css') }}">
 @endsection('link')
 @section('content')
+
+<!-- Main content -->
 <section class="content">
     <div class="container-fluid">
         <div class="row">
             <!-- left column -->
-            <div class="col-12">
+            <div class="col-md-12">
                 @if(session('update'))
                 <div class="flash" data-update="{{session('update')}}"></div>
                 @elseif(session('destroy'))
@@ -25,62 +27,71 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form action="{{ url('about/'. $about->id )}}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" name="_method" value="PUT">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="nama">Nama Ketua</label>
-                                    <input type="text" class="form-control" name="nama" id="nama" value="{{ $about->nama }}" />
-                                    @error('nama')
-                                    <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="foto">Foto Ketua</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="foto" id="foto">
-                                        @error('foto')
+                        <div class="card-body">
+                            <form action="{{ url('list-berita/'. $berita->tulisan_id )}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="_method" value="PUT">
+                                <input type="hidden" name="gambar_lama" value="{{$berita->tulisan_gambar}}">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="judul">Judul</label>
+                                        <input type="judul" class="form-control" name="tulisan_judul" id="judul" value="{{ $berita->tulisan_judul }}" />
+                                        @error('tulisan_judul')
                                         <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
                                         @enderror
-                                        <label class="custom-file-label" for="gambar">{{$about->foto}}</label>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-row">
-                                <div class="form-group col-md-8">
-                                    <label for="sambutan">Kata Sambutan</label>
-                                    <textarea class="form-control" name="sambutan" id="sambutan" cols="30" rows="10">{{$about->sambutan}}</textarea>
-                                    @error('sambutan')
-                                    <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
-                                    @enderror
+                                <div class="form-row">
+                                    <div class="form-group col-md-8">
+                                        <label for="isi">Berita</label>
+                                        <textarea class="form-control" name="tulisan_isi" id="isi" cols="30" rows="10">{{$berita->tulisan_isi}}</textarea>
+                                        @error('tulisan_isi')
+                                        <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label for="kategori">Kategori</label>
+                                                <select id="kategori" name="tulisan_kategori" class="form-control">
+                                                    @foreach($kategori as $key => $row)
+                                                    <option value="{{ $row->kategori_id }}">{{$row->kategori_nama}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('tulisan_kategori')
+                                                <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="gambar">Gambar</label>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="tulisan_gambar" id="gambar">
+                                                    @error('tulisan_gambar')
+                                                    <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
+                                                    @enderror
+                                                    <label class="custom-file-label" for="gambar">{{$berita->tulisan_gambar}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div class="form-group col-md-4">
-                                    <label for="desc">Deskripsi</label>
-                                    <textarea name="sambutan_home" id="desc" cols="30" rows="10" class="form-control">{{$about->sambutan_home}}</textarea>
-                                    @error('sambutan_home')
-                                    <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
-                                    @enderror
+                                <hr class="divider">
+                                <div class="form-group d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-sm btn-primary">Publish</button>
                                 </div>
-                            </div>
-
-                            <hr class="divider">
-                            <div class="form-group d-flex justify-content-end">
-                                <button type="submit" class="btn btn-sm btn-primary">Publish</button>
-                            </div>
-
-                        </form>
+                            </form>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card-body -->
+                    <!-- /.card -->
                 </div>
-                <!-- /.card -->
-            </div>
-            <!-- /.col -->
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+                <!-- /.col -->
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
 </section>
+
+<!-- /.content -->
 @endSection('content')
 @section('script')
 <!-- DataTables  & Plugins -->
@@ -93,6 +104,23 @@
 <!-- sweetalert2 -->
 <script src="{{ asset('assets_dashboard/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 <script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            // "buttons": ["excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
     $(document).ready(function() {
         const destroy = $('.flash').data('destroy');
         const store = $('.flash').data('store');
@@ -149,6 +177,7 @@
             })
         }
     });
+
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);

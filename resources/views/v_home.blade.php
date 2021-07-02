@@ -64,7 +64,7 @@
                         <img src="{{url('theme/images/'.$row->tulisan_gambar)}}" class="img-fluid" alt="courses-img">
                     </div>
                     <!-- // end .course-img-wrap -->
-                    <a href="{{url('artikel/'.$row->tulisan_slug)}}" class="course-box-content">
+                    <a href="{{url('artikel/' . $row->tulisan_slug)}}" class="course-box-content">
                         <h3 style="text-align:center;">{{ $row->tulisan_judul }}</h3>
                     </a>
                 </div>

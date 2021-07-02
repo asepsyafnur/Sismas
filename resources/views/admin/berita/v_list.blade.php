@@ -1,5 +1,5 @@
 @extends('admin/templates/v_default')
-@section('title', 'Ippmp | About')
+@section('title', 'Ippmp | list berita')
 @section('link')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{asset('assets_dashboard/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
@@ -9,12 +9,15 @@
 <link rel="stylesheet" href="{{ asset('assets_dashboard/plugins/sweetalert2/sweetalert2.min.css') }}">
 @endsection('link')
 @section('content')
+
+<!-- Main content -->
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <!-- left column -->
-            <div class="col-12">
-                @if(session('update'))
+            <div class="col-md-12">
+                @if(session('store'))
+                <div class="flash" data-store="{{session('store')}}"></div>
+                @elseif(session('update'))
                 <div class="flash" data-update="{{session('update')}}"></div>
                 @elseif(session('destroy'))
                 <div class="flash" data-destroy="{{session('destroy')}}"></div>
@@ -23,63 +26,46 @@
                     <div class="card-header">
                         <h3 class="card-title text-bold">{{ $title }}</h3>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
-                        <form action="{{ url('about/'. $about->id )}}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" name="_method" value="PUT">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="nama">Nama Ketua</label>
-                                    <input type="text" class="form-control" name="nama" id="nama" value="{{ $about->nama }}" />
-                                    @error('nama')
-                                    <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="foto">Foto Ketua</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="foto" id="foto">
-                                        @error('foto')
-                                        <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
-                                        @enderror
-                                        <label class="custom-file-label" for="gambar">{{$about->foto}}</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-8">
-                                    <label for="sambutan">Kata Sambutan</label>
-                                    <textarea class="form-control" name="sambutan" id="sambutan" cols="30" rows="10">{{$about->sambutan}}</textarea>
-                                    @error('sambutan')
-                                    <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                    <label for="desc">Deskripsi</label>
-                                    <textarea name="sambutan_home" id="desc" cols="30" rows="10" class="form-control">{{$about->sambutan_home}}</textarea>
-                                    @error('sambutan_home')
-                                    <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <hr class="divider">
-                            <div class="form-group d-flex justify-content-end">
-                                <button type="submit" class="btn btn-sm btn-primary">Publish</button>
-                            </div>
-
-                        </form>
+                       <table id="example1" class="table table-no-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Gambar</th>
+                                    <th>Judul</th>
+                                    <th>Tanggal & Waktu</th>
+                                    <th>Author</th>
+                                    <th>Kategori</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($berita as $key => $row)
+                                <tr>
+                                    <td>
+                                        <img src="{{ asset('theme/images/'. $row->tulisan_gambar) }}" alt="gambar artikel" width="100px" height="50px">
+                                    </td>
+                                    <td>{{ $row->tulisan_judul }}</td>
+                                    <td>{{ $row->tulisan_tanggal  }}</td>
+                                    <td>{{ $row->tulisan_author }}</td>
+                                    <td>{{ $row->tulisan_kategori_nama }}</td>
+                                    <td>
+                                        @if(auth()->user()->level == 'humas' || auth()->user()->level == 'admin')
+                                        <a href="{{ url('list-berita/edit/' . $row->tulisan_id ) }}" title="Edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                        <form action="{{ url('berita/' . $row->tulisan_id) }}" method="post" class="d-inline">
+                                            @csrf
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('apakah anda yakin?')" title="Hapus"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
             </div>
-            <!-- /.col -->
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
 </section>
 @endSection('content')
 @section('script')
@@ -93,6 +79,23 @@
 <!-- sweetalert2 -->
 <script src="{{ asset('assets_dashboard/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 <script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            // "buttons": ["excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
     $(document).ready(function() {
         const destroy = $('.flash').data('destroy');
         const store = $('.flash').data('store');
@@ -147,12 +150,32 @@
                     clearInterval(timerInterval)
                 }
             })
+        }else if (store) {
+            let timerInterval
+            Swal.fire({
+                position: 'top-end',
+                title: 'Post!',
+                text: store,
+                timer: 2000,
+                timerProgressBar: true,
+                icon: 'success',
+                didOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        const content = Swal.getHtmlContainer()
+                        if (content) {
+                            const b = content.querySelector('b')
+                            if (b) {
+                                b.textContent = Swal.getTimerLeft()
+                            }
+                        }
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            })
         }
-    });
-    $(".custom-file-input").on("change", function() {
-        var fileName = $(this).val().split("\\").pop();
-        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-    });
-
+    })
 </script>
 @endSection('script')
