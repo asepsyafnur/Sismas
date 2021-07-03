@@ -49,7 +49,6 @@
                             <li><a href="{{url('about')}}">About</a></li>
                             <li><a href="{{url('artikel')}}">Blog </a></li>
                             <li><a href="{{url('galeri')}}">Gallery</a></li>
-                            <li><a href="{{url('contact')}}">Contact</a></li>
                         </ul>
                     </div>
                 </div>

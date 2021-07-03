@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\KategoriController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutPageController;
+use App\Http\Controllers\AgendaPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ use App\Http\Controllers\AboutPageController;
 // page user
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('about', [AboutPageController::class, 'index']);
+Route::get('agenda', [AgendaPageController::class, 'index']);
 
 
 // page administrator
