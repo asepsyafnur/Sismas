@@ -28,15 +28,13 @@ class AboutController extends Controller
     public function update(Request $request, $id)
     {
         $row = $this->aboutM->detailData($id);
-        // dd($foto);
+        
         $request->validate([
             'nama' => 'required',
-            'sambutan' => 'required',
             'sambutan_home' => 'required',
             'foto' => 'mimes:jpg,png,jpeg|max:1024'
         ], [
             'nama.required' => '*wajib diisi',
-            'sambutan.required' => '*wajib diisi',
             'sambutan_home.required' => '*wajib diisi',
             'foto.mimes' => '*gambar harus berekstensi jpg,jpeg,png',
             'foto.max' => '*silahkan upload foto dibawah ukuran 1mb'
@@ -51,15 +49,13 @@ class AboutController extends Controller
             $data = [
                 'nama' => $request->nama,
                 'sambutan_home' => $request->sambutan_home,
-                'sambutan' => $request->sambutan,
                 'foto' => $namaFoto
             ];
         }else
         {
             $data = [
                 'nama' => $request->nama,
-                'sambutan_home' => $request->deskripsi,
-                'sambutan' => $request->sambutan,
+                'sambutan_home' => $request->sambutan_home,
             ];
         }
 

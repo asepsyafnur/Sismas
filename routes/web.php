@@ -7,13 +7,14 @@ use App\Http\Controllers\Admin\SuratMasukController;
 use App\Http\Controllers\Admin\SuratKeluarController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AgendaController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\KategoriController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ use Illuminate\Support\Facades\Auth;
 
 // page user
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('about', [AboutPageController::class, 'index']);
+
 
 // page administrator
 Route::get('/dashboard', [DashboardController::class, 'index']);

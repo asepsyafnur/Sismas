@@ -12,7 +12,6 @@ class AboutModel extends Model
     protected $fillable = [
         'nama',
         'sambutan_home',
-        'sambutan',
         'foto',
     ];
 

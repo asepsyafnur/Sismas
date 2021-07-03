@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <div class="row">
             <!-- left column -->
-            <div class="col-12">
+            <div class="col-12 col-md-8 mx-auto">
                 @if(session('update'))
                 <div class="flash" data-update="{{session('update')}}"></div>
                 @elseif(session('destroy'))
@@ -49,17 +49,9 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="form-group col-md-8">
-                                    <label for="sambutan">Kata Sambutan</label>
-                                    <textarea class="form-control" name="sambutan" id="sambutan" cols="30" rows="10">{{$about->sambutan}}</textarea>
-                                    @error('sambutan')
-                                    <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-12">
                                     <label for="desc">Deskripsi</label>
-                                    <textarea name="sambutan_home" id="desc" cols="30" rows="10" class="form-control">{{$about->sambutan_home}}</textarea>
+                                    <textarea name="sambutan_home" id="desc" cols="30" rows="7" class="form-control">{{$about->sambutan_home}}</textarea>
                                     @error('sambutan_home')
                                     <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
                                     @enderror

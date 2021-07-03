@@ -54,9 +54,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('galeri')}}">Gallery</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{url('contact')}}">Contact</a>
-                            </li>
                         </ul>
                     </div>
                 </nav>
