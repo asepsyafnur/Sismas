@@ -28,7 +28,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="card-body">
-                            <form action="{{ url('post-berita')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{ url('admin/post-berita')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group col-md-12">

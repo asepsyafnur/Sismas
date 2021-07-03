@@ -10,7 +10,7 @@
                         <span class="icon-envelope-open"></span>{{$address->email}}
                     </div>
                     <div class="header-top_list">
-                        <span class="icon-location-pin"></span>{{$address->alamat}}
+                        <span class="icon-location-pin"></span>Sekretariat : {{$address->alamat}}
                     </div>
                 </div>
                 <div class="header-top_login2">
@@ -33,7 +33,10 @@
                     <button class="navbar-toggler navbar-toggler2 navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
                         <span class="icon-menu"></span>
                     </button>
-                    <a href="{{url('/')}}" class="navbar-brand nav-brand2"><img class="img img-responsive" width="200px;" src="{{url('theme/images/logo-dark.png')}}"></a>
+                    <a href="{{url('/')}}" class="navbar-brand nav-brand2">
+                        {{-- <img class="img img-responsive" width="200px;" src="{{asset('assets_dashboard/dist/img/logo.jpg')}}"> --}}
+                        <h2>Logo</h2>
+                    </a>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -43,22 +46,10 @@
                                 <a class="nav-link" href="{{url('about')}}">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{url('guru')}}">Guru</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{url('siswa')}}">Siswa</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="{{url('blog')}}">Blog</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{url('pengumuman')}}">Pengumuman</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="{{url('agenda')}}">Agenda</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{url('download')}}">Download</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{url('galeri')}}">Gallery</a>

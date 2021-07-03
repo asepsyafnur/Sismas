@@ -38,13 +38,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ url('address') }}" class="nav-link">
+              <a href="{{ url('admin/address') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Header</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ url('about') }}" class="nav-link">
+              <a href="{{ url('admin/about') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>About</p>
               </a>
@@ -61,29 +61,35 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ url('list-berita') }}" class="nav-link">
+              <a href="{{ url('admin/list-berita') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>List Berita</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ url('post-berita') }}" class="nav-link">
+              <a href="{{ url('admin/post-berita') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Post Berita</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ url('kategori') }}" class="nav-link">
+              <a href="{{ url('admin/kategori') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Kategori</p>
               </a>
             </li>
           </ul>
         </li>
+        <li class="nav-item">
+          <a href="{{url('admin/agenda')}}" class="nav-link {{request()->is('agenda') ? 'active' : ''}}">
+            <i class="nav-icon fa fa-calendar"></i>
+            <p>Agenda</p>
+          </a>
+        </li>
         @endif
         @if(auth()->user()->level == 'admin')
         <li class="nav-item">
-          <a href="{{ url('users') }}" class="nav-link {{request()->is('users') ? 'active' : ''}}">
+          <a href="{{ url('admin/users') }}" class="nav-link {{request()->is('users') ? 'active' : ''}}">
             <i class="nav-icon fa fa-address-book"></i>
             <p>BPH</p>
           </a>

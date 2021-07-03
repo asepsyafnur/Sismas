@@ -50,8 +50,8 @@
                                     <td>{{ $row->tulisan_kategori_nama }}</td>
                                     <td>
                                         @if(auth()->user()->level == 'humas' || auth()->user()->level == 'admin')
-                                        <a href="{{ url('list-berita/edit/' . $row->tulisan_id ) }}" title="Edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
-                                        <form action="{{ url('berita/' . $row->tulisan_id) }}" method="post" class="d-inline">
+                                        <a href="{{ url('admin/list-berita/edit/' . $row->tulisan_id ) }}" title="Edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                        <form action="{{ url('admin/berita/' . $row->tulisan_id) }}" method="post" class="d-inline">
                                             @csrf
                                             <input type="hidden" name="_method" value="DELETE">
                                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('apakah anda yakin?')" title="Hapus"><i class="fas fa-trash"></i></button>

@@ -72,7 +72,7 @@ class BeritaController extends Controller
             'tulisan_slug' => Str::slug($request->tulisan_judul),
         ];
 
-        $this->beritaM->inserData($data);
+        $this->beritaM->insertData($data);
 
         return redirect()->route('list-berita')->with('store', 'berita berhasil dipost');
     }

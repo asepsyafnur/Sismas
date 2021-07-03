@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\AgendaController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\KategoriController;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +40,7 @@ Route::get('profile/{id}', [ProfileController::class, 'edit']);
 Route::post('profile/{id}', [ProfileController::class, 'update']);
 Auth::routes();
 // hak akses
-Route::group(['middleware' => 'ceklevel:admin,ketua,sekretaris'], function () {
+Route::group(['middleware' => 'ceklevel:admin,ketua,sekretaris,humas'], function () {
     // surat masuk
     Route::prefix('surat-masuk')->group(function () {
         Route::get('/', [SuratMasukController::class, 'index'])->name('surat-masuk');
@@ -73,36 +74,43 @@ Route::group(['middleware' => 'ceklevel:admin,ketua,sekretaris'], function () {
     Route::post('search-sk', [SuratKeluarController::class, 'sReport']);
     Route::get('laporan-sk/data/{fromDate}/{toDate}', [SuratKeluarController::class, 'sReport']);
 
-
-    Route::prefix('users')->group(function () {
-        Route::get('/', [RegisterController::class, 'index'])->name('users');
-        Route::delete('/{id}', [RegisterController::class, 'destroy']);
-    });
-
+    
     Route::get('/backup-db', function () {
         return view('admin.v_backupdb');
     });
 
-    Route::prefix('address')->group(function () {
-        Route::get('/', [AddressController::class, 'index'])->name('address');
-        Route::put('/{id}', [AddressController::class, 'update']);
+    Route::prefix('admin')->group(function(){
+        Route::prefix('users')->group(function () {
+            Route::get('/', [RegisterController::class, 'index'])->name('users');
+            Route::delete('/{id}', [RegisterController::class, 'destroy']);
+        });
+        
+        Route::prefix('address')->group(function () {
+            Route::get('/', [AddressController::class, 'index'])->name('address');
+            Route::put('/{id}', [AddressController::class, 'update']);
+        });
+        
+        Route::prefix('about')->group(function () {
+            Route::get('/', [AboutController::class, 'index'])->name('about');
+            Route::put('/{id}', [AboutController::class, 'update']);
+        });
+    
+        Route::get('list-berita', [BeritaController::class, 'index'])->name('list-berita');
+        Route::get('list-berita/edit/{id}', [BeritaController::class, 'edit']);
+        Route::put('list-berita/{id}', [BeritaController::class, 'update']);
+        Route::delete('berita/{id}', [BeritaController::class, 'destroy']);
+        Route::get('post-berita', [BeritaController::class, 'insert']);
+        Route::post('post-berita', [BeritaController::class, 'store']);
+    
+    
+        Route::get('kategori', [KategoriController::class, 'index'])->name('kategori');
+        Route::post('kategori', [KategoriController::class, 'store']);
+        Route::put('kategori/{id}', [KategoriController::class, 'update']);
+        Route::delete('kategori/{id}', [KategoriController::class, 'destroy']);
+    
+        Route:: get('agenda', [AgendaController::class, 'index'])->name('agenda');
+        Route:: post('agenda', [AgendaController::class, 'store']);
+        Route:: put('agenda/{id}', [AgendaController::class, 'update']);
+        Route:: delete('agenda/{id}', [AgendaController::class, 'destroy']);
     });
-
-    Route::prefix('about')->group(function () {
-        Route::get('/', [AboutController::class, 'index'])->name('about');
-        Route::put('/{id}', [AboutController::class, 'update']);
-    });
-
-    Route::get('list-berita', [BeritaController::class, 'index'])->name('list-berita');
-    Route::get('list-berita/edit/{id}', [BeritaController::class, 'edit']);
-    Route::put('list-berita/{id}', [BeritaController::class, 'update']);
-    Route::delete('berita/{id}', [BeritaController::class, 'destroy']);
-    Route::get('post-berita', [BeritaController::class, 'insert']);
-    Route::post('post-berita', [BeritaController::class, 'store']);
-
-
-    Route::get('kategori', [KategoriController::class, 'index'])->name('kategori');
-    Route::post('kategori', [KategoriController::class, 'store']);
-    Route::put('kategori/{id}', [KategoriController::class, 'update']);
-    Route::delete('kategori/{id}', [KategoriController::class, 'destroy']);
 });

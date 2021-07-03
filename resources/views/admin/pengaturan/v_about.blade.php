@@ -25,7 +25,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form action="{{ url('about/'. $about->id )}}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('admin/about/'. $about->id )}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-row">

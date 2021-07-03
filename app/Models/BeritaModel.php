@@ -22,7 +22,7 @@ class BeritaModel extends Model
         return DB::table('tulisan')->where('tulisan_id', $id)->first();
     }
 
-    public function inserData($data)
+    public function insertData($data)
     {
         return DB::table('tulisan')->insert($data);
     }

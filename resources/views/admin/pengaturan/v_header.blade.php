@@ -28,7 +28,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                     <div class="card-body">
-                        <form action="{{ url('address/'. $address->id )}}" method="post">
+                        <form action="{{ url('admin/address/'. $address->id )}}" method="post">
                             @csrf
                             <input type="hidden" name="_method" value="PUT">
                             <div class="form-row">

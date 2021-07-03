@@ -28,7 +28,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="card-body">
-                            <form action="{{ url('list-berita/'. $berita->tulisan_id )}}" method="post" enctype="multipart/form-data">
+                            <form action="{{ url('admin/list-berita/'. $berita->tulisan_id )}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="_method" value="PUT">
                                 <input type="hidden" name="gambar_lama" value="{{$berita->tulisan_gambar}}">

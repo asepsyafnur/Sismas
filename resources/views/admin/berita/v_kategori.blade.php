@@ -44,7 +44,7 @@
                                     <td class="d-flex justify-content-around">
                                         @if(auth()->user()->level == 'humas' || auth()->user()->level == 'admin')
                                         <button type="button" title="Edit" class="btn btn-sm btn-warning" data-target="#edit{{$row->kategori_id}}" data-toggle="modal"><i class="fas fa-edit"></i></button>
-                                        <form action="{{ url('kategori/' . $row->kategori_id) }}" method="post" class="ml-2">
+                                        <form action="{{ url('admin/kategori/' . $row->kategori_id) }}" method="post" class="ml-2">
                                             @csrf
                                             <input type="hidden" name="_method" value="DELETE">
                                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('apakah anda yakin?')" title="Hapus"><i class="fas fa-trash"></i></button>
@@ -71,7 +71,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{url('kategori')}}" method="post">
+            <form action="{{url('admin/kategori')}}" method="post">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -102,7 +102,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{url('kategori/' . $row->kategori_id)}}" method="post">
+            <form action="{{url('admin/kategori/' . $row->kategori_id)}}" method="post">
                 @csrf
                 <div class="modal-body">
                     <input type="hidden" name="_method" value="PUT" />
