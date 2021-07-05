@@ -17,6 +17,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutPageController;
 use App\Http\Controllers\AgendaPageController;
 use App\Http\Controllers\BlogPageController;
+use App\Http\Controllers\GalleriPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,9 @@ Route::get('about', [AboutPageController::class, 'index']);
 Route::get('agenda', [AgendaPageController::class, 'index']);
 Route::get('blog', [BlogPageController::class, 'index']);
 Route::get('artikel/{slug}', [BlogPageController::class, 'artikel']);
+Route::get('galeri', [GalleriPageController::class, 'index']);
+
+
 
 // page administrator
 Route::get('/dashboard', [DashboardController::class, 'index']);

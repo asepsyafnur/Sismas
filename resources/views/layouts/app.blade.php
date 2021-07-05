@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{url('theme/css/slick.css')}}">
     <link rel="stylesheet" href="{{url('theme/css/slick-theme.css')}}">
     <link rel="stylesheet" href="{{url('theme/css/owl.carousel.min.css')}}">
+    @yield('link')
     <!-- Main CSS -->
     <link href="{{url('theme/css/style.css')}}" rel="stylesheet">
 </head>
