@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class BeritaModel extends Model
 {
+    
     protected $primaryKey = 'tulisan_id';
 
     public function allData()
@@ -20,6 +21,11 @@ class BeritaModel extends Model
     public function detailData($id)
     {
         return DB::table('tulisan')->where('tulisan_id', $id)->first();
+    }
+
+    public function detailArtikel($slug)
+    {
+        return DB::table('tulisan')->where('tulisan_slug', $slug)->first();
     }
 
     public function insertData($data)

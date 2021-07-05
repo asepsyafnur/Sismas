@@ -17,11 +17,11 @@
                     <a href="{{url('contact')}}">Hubungi Kami</a>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-4 col-md-3">
+            {{-- <div class="col-xs-6 col-sm-4 col-md-3">
                 <div class="header-top_login mr-sm-3">
                     <a href="{{url('contact')}}">Hubungi Kami</a>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

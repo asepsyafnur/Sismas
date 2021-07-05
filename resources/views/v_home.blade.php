@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Ippmp | Selamat datang di web kami')
 @section('content')
-<section>
+<section class="row">
     <div class="slider_img layout_two">
         <div id="carousel" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">

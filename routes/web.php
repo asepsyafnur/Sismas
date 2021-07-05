@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutPageController;
 use App\Http\Controllers\AgendaPageController;
+use App\Http\Controllers\BlogPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,8 @@ use App\Http\Controllers\AgendaPageController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('about', [AboutPageController::class, 'index']);
 Route::get('agenda', [AgendaPageController::class, 'index']);
-
+Route::get('blog', [BlogPageController::class, 'index']);
+Route::get('artikel/{slug}', [BlogPageController::class, 'artikel']);
 
 // page administrator
 Route::get('/dashboard', [DashboardController::class, 'index']);
